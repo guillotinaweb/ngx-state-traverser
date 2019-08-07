@@ -1,0 +1,7 @@
+<header>
+  Github package: <input type="text" [(ngModel)]="repository" />
+  <button [traverseTo]="'/' + repository +'/contents/'">Go</button>
+</header>
+<section>
+  <traverser-outlet></traverser-outlet>
+</section>

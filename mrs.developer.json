@@ -1,0 +1,8 @@
+{
+    "angular-traversal": {
+        "path": "/src",
+        "url": "git@github.com:guillotinaweb/angular-traversal.git",
+        "https": "https://github.com/guillotinaweb/angular-traversal.git",
+        "branch": "cleanup"
+    }
+}

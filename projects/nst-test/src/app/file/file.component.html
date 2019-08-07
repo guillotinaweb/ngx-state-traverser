@@ -1,0 +1,7 @@
+<h2>{{ name }}</h2>
+<div><small>See {{ readme | async }}</small></div>
+<a [traverseTo]="(path | async) + '/@@info'">Get info</a>
+<pre>{{ code }}</pre>
+
+<h3>Parent navigation</h3>
+<app-navigation></app-navigation>
