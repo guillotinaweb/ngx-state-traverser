@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Target } from 'angular-traversal';
 
-export enum ActionTypes {
+export enum TraverserActionTypes {
     Traverse = '[Traversal] Traverse',
     ResolveContext = '[Traversal] Resolve context',
     Resolve = '[Traversal] Resolve',
@@ -10,27 +10,27 @@ export enum ActionTypes {
 }
 
 export class Traverse implements Action {
-    readonly type = ActionTypes.Traverse;
+    readonly type = TraverserActionTypes.Traverse;
     constructor(readonly payload: string) {}
 }
 
 export class ResolveContext implements Action {
-    readonly type = ActionTypes.ResolveContext;
+    readonly type = TraverserActionTypes.ResolveContext;
     constructor(readonly payload: Target) {}
 }
 
 export class Resolve implements Action {
-    readonly type = ActionTypes.Resolve;
+    readonly type = TraverserActionTypes.Resolve;
     constructor(readonly payload: {path: string, object: any}) {}
 }
 
 export class CleanTraverserResources implements Action {
-    readonly type = ActionTypes.CleanTraverserResources;
+    readonly type = TraverserActionTypes.CleanTraverserResources;
     constructor(readonly payload: string[]) {}
 }
 
 export class UpdateTraverserResource implements Action {
-    readonly type = ActionTypes.UpdateTraverserResource;
+    readonly type = TraverserActionTypes.UpdateTraverserResource;
     constructor(readonly payload: {path: string, changes: {[key: string]: any}}) {}
 }
 

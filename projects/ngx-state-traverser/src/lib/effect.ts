@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Traverser } from 'angular-traversal';
-import { ResolveContext, ActionTypes, Traverse, Resolve } from './actions';
+import { ResolveContext, TraverserActionTypes, Traverse, Resolve } from './actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
@@ -22,7 +22,7 @@ export class StateTraverserEffect {
     @Effect()
     request = this.actions
         .pipe(
-            ofType<Traverse>(ActionTypes.Traverse),
+            ofType<Traverse>(TraverserActionTypes.Traverse),
             mergeMap(action => this.traverser.resolve(action.payload)
                 .pipe(
                     map(obj => new Resolve({path: action.payload, object: obj})),

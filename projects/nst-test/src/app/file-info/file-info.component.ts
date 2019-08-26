@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { RootState } from '../app.state';
 import { GithubFile } from '../file/file.component';
-import { TraverserContext } from 'projects/ngx-state-traverser/src/public-api';
+import { TraverserContext } from 'ngx-state-traverser';
 
 @Component({
   selector: 'app-file-info',

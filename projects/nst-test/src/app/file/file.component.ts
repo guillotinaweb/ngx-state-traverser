@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { RootState } from '../app.state';
 import { map } from 'rxjs/operators';
-import { getTarget, TraverserContext, TraverseTo } from 'projects/ngx-state-traverser/src/public-api';
+import { getTarget, TraverserContext, TraverseTo } from 'ngx-state-traverser';
 
 export class GithubFile {
     content?: string;

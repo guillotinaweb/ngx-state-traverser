@@ -17,9 +17,8 @@ import { FileComponent } from './file/file.component';
 import { FolderComponent } from './folder/folder.component';
 import { FileInfoComponent } from './file-info/file-info.component';
 import { appStore } from './app.store';
-import { EffectsModule } from '@ngrx/effects';
 import { NavigationComponent } from './navigation/navigation.component';
-import { StateTraverserEffect, StateTraverserModule } from 'projects/ngx-state-traverser/src/public-api';
+import { StateTraverserModule } from 'ngx-state-traverser';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,6 @@ import { StateTraverserEffect, StateTraverserModule } from 'projects/ngx-state-t
   ],
   imports: [
     ...appStore,
-    EffectsModule.forRoot([StateTraverserEffect]),
     BrowserModule,
     FormsModule,
     HttpClientModule,

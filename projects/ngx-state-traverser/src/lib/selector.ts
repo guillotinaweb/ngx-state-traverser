@@ -13,6 +13,14 @@ export class Missing {
 
 type ContextOrMissing = {[key: string]: any} | Missing;
 
+function _getParentPath(state: TraversingState): string {
+    let targetPath = state.target.contextPath;
+    if (targetPath.endsWith('/')) {
+        targetPath = targetPath.slice(0, -1);
+    }
+    return targetPath.split('/').slice(0, -1).join('/');
+}
+
 export const traversalSelector = createFeatureSelector<TraversingState>(
     TraversingStateFeatures.Traversal
 );
@@ -20,6 +28,11 @@ export const traversalSelector = createFeatureSelector<TraversingState>(
 export const getTarget = createSelector(
     traversalSelector,
     (state: TraversingState): Target => state.target
+);
+
+export const getContextPath = createSelector(
+    traversalSelector,
+    (state: TraversingState): string => state.target.contextPath
 );
 
 export const getContext = createSelector(
@@ -34,14 +47,17 @@ export function TraverserContext<T>(store: Store<any>) {
     );
 }
 
+export const getParentPath = createSelector(
+    traversalSelector,
+    (state: TraversingState): string => {
+        return _getParentPath(state);
+    }
+);
+
 export const getParent = createSelector(
     traversalSelector,
     (state: TraversingState): ContextOrMissing => {
-        let targetPath = state.target.contextPath;
-        if (targetPath.endsWith('/')) {
-            targetPath = targetPath.slice(0, -1);
-        }
-        const parentPath = targetPath.split('/').slice(0, -1).join('/');
+        const parentPath = _getParentPath(state);
         return state.collection[parentPath] || new Missing(parentPath);
     }
 );

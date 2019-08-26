@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { RootState } from '../app.state';
-import { getContext } from 'projects/ngx-state-traverser/src/public-api';
+import { getContext } from 'ngx-state-traverser';
 
 @Component({
   selector: 'app-folder',
