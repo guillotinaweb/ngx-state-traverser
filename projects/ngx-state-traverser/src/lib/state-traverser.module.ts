@@ -7,7 +7,7 @@ import { StateTraverserEffect } from './effect';
 @NgModule({
   imports: [
     ...store,
-    EffectsModule.forRoot([StateTraverserEffect]),
+    EffectsModule.forFeature([StateTraverserEffect]),
   ]
 })
 export class StateTraverserModule {

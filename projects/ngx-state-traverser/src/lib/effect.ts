@@ -33,5 +33,5 @@ export class StateTraverserEffect {
     constructor(
         private actions: Actions,
         private traverser: Traverser,
-    ) { }
+    ) {}
 }

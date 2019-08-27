@@ -35,6 +35,21 @@ export const getContextPath = createSelector(
     (state: TraversingState): string => state.target.contextPath
 );
 
+export const getPrefixedContextPath = createSelector(
+    traversalSelector,
+    (state: TraversingState): string => state.target.prefixedContextPath
+);
+
+export const getPath = createSelector(
+    traversalSelector,
+    (state: TraversingState): string => state.target.path
+);
+
+export const getPrefixedPath = createSelector(
+    traversalSelector,
+    (state: TraversingState): string => state.target.prefixedPath
+);
+
 export const getContext = createSelector(
     traversalSelector,
     (state: TraversingState): {[key: string]: any} => state.target.context
