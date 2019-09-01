@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Traverser } from 'angular-traversal';
-import { ResolveContext, TraverserActionTypes, Traverse, Resolve } from './actions';
+import { TraverserActions } from './actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
-import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
+import { map, mergeMap, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class StateTraverserEffect {
@@ -13,7 +13,7 @@ export class StateTraverserEffect {
             ofType('[Traversing] Watch'),
             mergeMap(() => this.traverser.target
                 .pipe(
-                    map(target => new ResolveContext(target)),
+                    map(target => new TraverserActions.ResolveContext(target)),
                     catchError(() => EMPTY)
                 )
             )
@@ -22,10 +22,10 @@ export class StateTraverserEffect {
     @Effect()
     request = this.actions
         .pipe(
-            ofType<Traverse>(TraverserActionTypes.Traverse),
+            ofType<TraverserActions.Traverse>(TraverserActions.Types.Traverse),
             mergeMap(action => this.traverser.resolve(action.payload)
                 .pipe(
-                    map(obj => new Resolve({path: action.payload, object: obj})),
+                    map(obj => new TraverserActions.Resolve({path: action.payload, object: obj})),
                     catchError(() => EMPTY)
                 )
             )
@@ -33,5 +33,5 @@ export class StateTraverserEffect {
     constructor(
         private actions: Actions,
         private traverser: Traverser,
-    ) { }
+    ) {}
 }

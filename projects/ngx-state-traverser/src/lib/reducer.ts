@@ -1,9 +1,9 @@
 import { initialState, TraversingState } from './state';
-import { Action, TraverserActionTypes } from './actions';
+import { TraverserActions } from './actions';
 
-export function reducer(state = initialState, action: Action): TraversingState {
+export function reducer(state = initialState, action: TraverserActions.Actions): TraversingState {
     switch (action.type) {
-        case TraverserActionTypes.ResolveContext: {
+        case TraverserActions.Types.ResolveContext: {
             let contextPath = action.payload.contextPath;
             if (!!contextPath && contextPath.endsWith('/')) {
                 contextPath = contextPath.slice(0, -1);
@@ -16,7 +16,7 @@ export function reducer(state = initialState, action: Action): TraversingState {
                 },
             };
         }
-        case TraverserActionTypes.Resolve: {
+        case TraverserActions.Types.Resolve: {
             let path = action.payload.path;
             if (!!path && path.endsWith('/')) {
                 path = path.slice(0, -1);
@@ -29,7 +29,7 @@ export function reducer(state = initialState, action: Action): TraversingState {
                 },
             };
         }
-        case TraverserActionTypes.CleanTraverserResources: {
+        case TraverserActions.Types.CleanTraverserResources: {
             const exactPathes = action.payload.filter(path => !path.endsWith('*'));
             const startPathes = action.payload.filter(path => path.endsWith('*')).map(path => path.slice(0, -1));
             const collection = Object.entries(state.collection).reduce((all, [path, obj]) => {
@@ -43,7 +43,7 @@ export function reducer(state = initialState, action: Action): TraversingState {
                 collection,
             };
         }
-        case TraverserActionTypes.UpdateTraverserResource: {
+        case TraverserActions.Types.UpdateTraverserResource: {
             return {
                 ...state,
                 collection: {

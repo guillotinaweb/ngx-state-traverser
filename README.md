@@ -68,7 +68,7 @@ context = this.store.pipe(select(getContext));
 But the `TraverserContext` function allows to get a typed context:
 
 ```
-context = TraverserContext<UserProfile>();
+context = TraverserSelectors.TraverserContext<UserProfile>(this.store);
 ```
 
 ## Accessing other resources
@@ -80,7 +80,7 @@ Let's say we need the list of all the posts from the current month when displayi
 We can get the folder content from the state:
 
 ```
-folder = TraverserResource<Folder>('..');
+folder = TraverserSelectors.TraverserResource<Folder>(this.store, '..');
 ```
 
 Assuming the current context path is `/2019/07/10`, it retrieves the content of `/2019/07`.
@@ -90,13 +90,13 @@ All the traversed resources are stored in the state, but if the requested resour
 As the state acts as a cache system, it can be cleaned on demand:
 
 ```
-this.store.dispatch(new CleanTraverserResources(['../eric', '/2019/*']))
+this.store.dispatch(new TraverserActions.CleanTraverserResources(['../eric', '/2019/*']))
 ```
 
 And it can be updated:
 
 ```
-this.store.dispatch(new UpdateTraverserResource({
+this.store.dispatch(new TraverserActions.UpdateTraverserResource({
     path: '/2019/07/03',
     changes: {
         title: "New title"
