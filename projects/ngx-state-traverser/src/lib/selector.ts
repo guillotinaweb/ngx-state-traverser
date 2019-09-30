@@ -156,7 +156,7 @@ export namespace TraverserSelectors {
                     return context;
                 }
             }),
-            filter(context => !!context),
+            filter(context => !!context && !context.isPending),
             map(context => (context as T))
         );
     }
