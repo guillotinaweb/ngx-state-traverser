@@ -1,3 +1,7 @@
+# 1.0.3 (2019-09-30)
+
+- Prevent pending contexts to be sent by TraverseTo selector
+
 # 1.0.2 (2019-09-30)
 
 - Add pending in state to prevent infinite loop when getting ancestors
