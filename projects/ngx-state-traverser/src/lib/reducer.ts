@@ -52,6 +52,15 @@ export function reducer(state = initialState, action: TraverserActions.Actions):
                 }
             };
         }
+        case TraverserActions.Types.Traverse: {
+            return {
+                ...state,
+                collection: {
+                    ...state.collection,
+                    [action.payload]: {isPending: true}
+                }
+            };
+        }
         default: {
             return state;
         }
