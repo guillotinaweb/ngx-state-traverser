@@ -105,7 +105,7 @@ export namespace TraverserSelectors {
                     store.dispatch(new TraverserActions.Traverse(ancestor.path));
                 }
             })),
-            filter(ancestors => ancestors.every(ancestor => !(ancestor instanceof Missing))),
+            filter(ancestors => ancestors.every(ancestor => !(ancestor instanceof Missing) && !ancestor.isPending)),
             map(ancestors => ancestors as T[])
         );
     }
