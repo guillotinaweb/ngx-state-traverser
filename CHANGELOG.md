@@ -1,3 +1,7 @@
+# 1.0.4 (2019-10-03)
+
+- Don't overwrite full object on Update
+
 # 1.0.3 (2019-09-30)
 
 - Prevent pending contexts to be sent by TraverseTo selector
