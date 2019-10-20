@@ -5,6 +5,25 @@ import { map, filter, tap } from 'rxjs/operators';
 import { TraverserActions } from './actions';
 import { Observable } from 'rxjs';
 
+function getFullPath(path: string, currentPath: string): string {
+    if (path === '.') {
+        path = currentPath;
+    } else if (path.startsWith('./')) {
+        path = currentPath === '/' ? path.slice(1) : currentPath + path.slice(1);
+    } else if (path.startsWith('../')) {
+        const current = currentPath.split('/');
+        path = path.split('/').reduce((all, chunk) => {
+            if (chunk === '..') {
+                all.pop();
+            } else {
+                all.push(chunk);
+            }
+            return all;
+        }, current).join('/');
+    }
+    return path;
+}
+
 export namespace TraverserSelectors {
     export class Missing {
         path: string;
@@ -53,6 +72,11 @@ export namespace TraverserSelectors {
         (state: TraversingState): string => state.target.prefixedPath
     );
 
+    export const isForbidden = createSelector(
+        traversalSelector,
+        (state: TraversingState): boolean => !!state.target.context.isForbidden
+    );
+
     export const getContext = createSelector(
         traversalSelector,
         (state: TraversingState): { [key: string]: any } => state.target.context
@@ -83,6 +107,7 @@ export namespace TraverserSelectors {
     export const getAncestors = createSelector(
         traversalSelector,
         (state: TraversingState, path: string): ContextOrMissing[] => {
+            path = getFullPath(path, state.target.contextPath);
             const ancestorPaths = path.split('/').filter(chunk => !!chunk).reduce((allChunks, chunk) => {
                 if (allChunks.length === 0) {
                     allChunks.push(`/${chunk}`);
@@ -127,19 +152,7 @@ export namespace TraverserSelectors {
         return createSelector(
             traversalSelector,
             (state: TraversingState): ContextOrMissing => {
-                if (path.startsWith('./')) {
-                    path = state.target.contextPath + path.slice(1);
-                } else if (path.startsWith('../')) {
-                    const current = state.target.contextPath.split('/');
-                    path = path.split('/').reduce((all, chunk) => {
-                        if (chunk === '..') {
-                            all.pop();
-                        } else {
-                            all.push(chunk);
-                        }
-                        return all;
-                    }, current).join('/');
-                }
+                path = getFullPath(path, state.target.contextPath);
                 return state.collection[path] || new Missing(path);
             }
         );

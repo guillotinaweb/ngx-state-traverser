@@ -1,3 +1,7 @@
+# 1.0.5 (2019-10-20)
+
+- Allow to get ancestors with relative path
+
 # 1.0.4 (2019-10-03)
 
 - Don't overwrite full object on Update
