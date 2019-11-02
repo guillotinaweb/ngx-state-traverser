@@ -1,0 +1,23 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": "../..",
+        "outDir": "../../out-tsc/app",
+        "types": [],
+        "paths": {
+            "angular-traversal": [
+                "src/develop/angular-traversal/projects/traversal/src/lib"
+            ],
+            "ngx-state-traverser": [
+                "projects/ngx-state-traverser/src"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "src/test.ts",
+        "src/**/*.spec.ts"
+    ]
+}

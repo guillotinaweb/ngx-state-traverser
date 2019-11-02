@@ -16,37 +16,43 @@ import { AppComponent } from './app.component';
 import { FileComponent } from './file/file.component';
 import { FolderComponent } from './folder/folder.component';
 import { FileInfoComponent } from './file-info/file-info.component';
-import { appStore } from './app.store';
 import { NavigationComponent } from './navigation/navigation.component';
 import { StateTraverserModule } from 'ngx-state-traverser';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FileComponent,
-    FolderComponent,
-    FileInfoComponent,
-    NavigationComponent
-  ],
-  imports: [
-    ...appStore,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    TraversalModule,
-    StateTraverserModule,
-  ],
-  entryComponents: [
-    FileComponent,
-    FolderComponent,
-    FileInfoComponent
-  ],
-  providers: [
-    { provide: Resolver, useClass: BasicHttpResolver },
-    { provide: BACKEND_BASE_URL, useValue: 'https://api.github.com/repos' },
-    { provide: Marker, useClass: TypeMarker },
-    { provide: Normalizer, useClass: FullPathNormalizer },
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        FileComponent,
+        FolderComponent,
+        FileInfoComponent,
+        NavigationComponent
+    ],
+    imports: [
+        StoreModule.forRoot({}),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25
+        }),
+        EffectsModule.forRoot([]),
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        TraversalModule,
+        StateTraverserModule,
+    ],
+    entryComponents: [
+        FileComponent,
+        FolderComponent,
+        FileInfoComponent
+    ],
+    providers: [
+        { provide: Resolver, useClass: BasicHttpResolver },
+        { provide: BACKEND_BASE_URL, useValue: 'https://api.github.com/repos' },
+        { provide: Marker, useClass: TypeMarker },
+        { provide: Normalizer, useClass: FullPathNormalizer },
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

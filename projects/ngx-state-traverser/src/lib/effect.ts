@@ -31,7 +31,7 @@ export class StateTraverserEffect {
             )
         );
     constructor(
-        private actions: Actions,
+        private readonly actions: Actions,
         private traverser: Traverser,
     ) {}
 }

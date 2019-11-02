@@ -1,3 +1,7 @@
+# 1.0.6 (2019-11-02)
+
+- Add Travis and fix demo and test setup
+
 # 1.0.5 (2019-10-20)
 
 - Allow to get ancestors with relative path

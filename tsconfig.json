@@ -1,12 +1,14 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "baseUrl": ".",
+        "baseUrl": "src",
         "outDir": "./dist/out-tsc",
         "sourceMap": true,
         "declaration": false,
         "downlevelIteration": true,
         "experimentalDecorators": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
         "module": "esnext",
         "moduleResolution": "node",
         "importHelpers": true,
@@ -20,7 +22,7 @@
         ],
         "paths": {
             "angular-traversal": [
-                "src/develop/angular-traversal/src"
+                "develop/angular-traversal/projects/traversal/src/lib"
             ]
         }
     },
