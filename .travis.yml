@@ -14,12 +14,15 @@ notifications:
   email:
   - ebrehault@gmail.com
 before_deploy:
-  - git config --global user.email "build@travis-ci.com"
-  - git config --global user.name "Travis CI"
-  - export PACKAGE_VERSION=$(npm run get_version | tail -n 1)
-  - echo "TAGGING $PACKAGE_VERSION..."
-  - git tag $PACKAGE_VERSION
-  - if [[ $TRAVIS_TAG ]]; then cd dist/ngx-state-traverser; fi
+  if [[ $TRAVIS_TAG ]]; then
+    cd dist/ngx-state-traverser;
+  else
+    git config --global user.email "build@travis-ci.com" &&
+    git config --global user.name "Travis CI" &&
+    export PACKAGE_VERSION=$(npm run get_version | tail -n 1) &&
+    echo "TAGGING $PACKAGE_VERSION..." &&
+    git tag $PACKAGE_VERSION;
+  fi
 deploy:
   - provider: releases
     api_key:
