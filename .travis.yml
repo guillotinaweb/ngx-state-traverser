@@ -19,7 +19,7 @@ before_deploy:
   - export PACKAGE_VERSION=$(npm run get_version | tail -n 1)
   - echo "TAGGING $PACKAGE_VERSION..."
   - git tag $PACKAGE_VERSION
-  - if [[ $TRAVIS_TAG ]]; then; cd dist/ngx-state-traverser; fi
+  - if [[ $TRAVIS_TAG ]]; then cd dist/ngx-state-traverser; fi
 deploy:
   - provider: releases
     api_key:
