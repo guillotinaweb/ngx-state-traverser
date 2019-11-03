@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { RootState } from '../app.state';
 import { GithubFile } from '../file/file.component';
-import { TraverserSelectors } from 'ngx-state-traverser';
+import { TraverserSelectors, TraversingState } from 'ngx-state-traverser';
 
 @Component({
   selector: 'app-file-info',
@@ -12,6 +11,6 @@ export class FileInfoComponent {
 
   context = TraverserSelectors.TraverserContext<GithubFile>(this.store);
 
-  constructor(private readonly store: Store<RootState>) { }
+  constructor(private readonly store: Store<TraversingState>) { }
 
 }

@@ -1,0 +1,38 @@
+language: node_js
+node_js:
+- 12.4.0
+cache:
+  directories:
+  - node_modules
+dist: trusty
+install:
+- npm install
+script:
+- npm run test
+- npm run build:lib
+notifications:
+  email:
+  - ebrehault@gmail.com
+before_deploy:
+- git config --global user.email "build@travis-ci.com"
+- git config --global user.name "Travis CI"
+- export PACKAGE_VERSION=$(npm run get_version | tail -n 1)
+- echo "TAGGING $PACKAGE_VERSION..."
+- git tag $PACKAGE_VERSION
+- cd dist/ngx-state-traverser
+deploy:
+  - provider: releases
+    api_key:
+      secure: XQBpk01ivqh4FLc2jhEgX24nlYmlxjm8DA2PARibrQWtDfpdVcP/niRqg3pKQlDyuAAnf4UW+FJ3KCow2vRy2lYQihT+GyZmOjW5Gi0wfe7M1deyVwlwf9wn/fkYhUwklBVd5NbaKje79WSV1KAFbtIUGpT4H7DqUeY4P2pOwRNJD1LksNOskZYhbK5bFbOzcD4KKaP8kbIqLX3lIhKt8cQbh1Z//LWfLl3QvhUrx5lZRZCjtkINAiXh50IssZZtLxaUVxFoFwEzH7d62zOx4c72efjYNCwmJ/UDmzg72PLLnjtjJVE8wrdak6GXvQ//9fFztnHW1VFe96BjBcJFvcqchJwBkh8DKrWVxvweeOSPV73Dck8hWhmjeU4Lb7anXrOuE8Qbg9rZP0nO6iqJFJd47oAmabS66LSg4mLJYFLHZWVWodupNB+ob1+0t+PELLKJvPmCTjd+d0sNMYEH90YAHWL+2iyeEF8KwF/G/3Ovun4NScZ0eeMajY821tKSbNFmWnNsLxzdmoDZYBlPxhBTuPqPSySWpsvm9xStH7/I1RQGhV65ZDsr53TIG5iF9kwKYKnaJ4vkIgJQmIP+pOhnuhxT1loY4c/2tDf5uJno1AouRmOJyONiNagtyYsGQz69W8xR8kLPFndEWE2K2At5nz2q+7QvMW2DvsG6XEE=
+    name: Build $(date +'%d.%m.%Y %R')
+    on:
+      repo: guillotinaweb/ngx-state-traverser
+      branch: master
+  - provider: npm
+    email: ebrehault@gmail.com
+    api_key:
+      secure: W1k+SbgztDnalB3qZunzQfmdeuECxFYiNCN2LRoC97Yn5eKUQqVH6fHqrfFKwB8H0g6Oc+7xnQTudmG3On3Ft/C3uMQH4wZ5Mt4VtRp2R8wXXdABJcY4KDnF/vqI0qMLJ7Pod9lIP0is9kM5e9srE6c+y2Uf1lnJvJPQ1S85bKdxI2oz0IOM/gS+ttOSKIB/cWDjV3xe7kGlr7LU+Kny31dRwK+JMApbIWt0c5R+RVXNO3446vVBupXip4HWt+3SXPYrY3PAcFxtbdsUAKciLEkgEKL5kXIj2OPL3LtWYPK35Sr+VoLYzqAocVx1Nw1j6zNE/or7AKbbVFFhsBr7ToQ9OxgUflXPce2qH7AneJU866HqJm5KyjFLX6W8OJIK/bAVHgFeyst/Ya8HmYIHJppOf8hYvmrkJ7dJ3zhwBIt/Yl31o2FfzMBxM5z+extenTH48aSq3ugYdsscOHGe76h14S35aFQFcty5ZwzByIUk87N6QLGepuhzWjqijaKCY6hawUAB7OQiR/Lrwhtoz2axPOE7segOcdP+gL5J+jC1eB0/0DDnQ6thgJUkO+5dk7qNQd3fANF0fxHoUcTrzU7t+C8F7uYVdA3pFxxJ0ubjnfWVAeL/t7VgFlLxW/uDuC7BhwMN+yvJd+16SBMWknmYWYaMkEqpJKG1+b31Lso=
+    on:
+      tags: true
+      repo: guillotinaweb/ngx-state-traverser
+      branch: master

@@ -1,5 +1,7 @@
 # ngx-state-traverser
 
+[![Build Status](https://travis-ci.com/guillotinaweb/ngx-state-traverser.svg?branch=master)](https://travis-ci.com/guillotinaweb/ngx-state-traverser)
+
 ngx-state-traverser brings [angular-traversal](https://github.com/guillotinaweb/angular-traversal) power to (ngrx)[https://ngrx.io/].
 
 ## Principle
@@ -42,9 +44,9 @@ The `<traverser-outlet></traverser-outlet>` will load the current context accord
 Any template might contain some links like:
 
 ```
-<a traverserLink="/2019/07/new-post">
-<a [traverserLink]="relatedPost">
-<a traverserLink="..">
+<a traverseTo="/2019/07/new-post">
+<a [traverseTo]="relatedPost">
+<a traverseTo="..">
 ```
 
 Note: here and later on, the provided link can be either a full path (`/2019/07/new-post`), a relative path (`../eric`), or a backend URL (`https://my-backend.net/introduction`).
@@ -52,7 +54,7 @@ Note: here and later on, the provided link can be either a full path (`/2019/07/
 In code, we can navigate by dispatching an action:
 
 ```
-this.store.dispatch(new Traverse('../eric'))
+this.store.dispatch(new TraverserActions.Traverse('../eric'))
 ```
 
 ## Get the current context
@@ -62,7 +64,7 @@ The component gets the `context` from the state.
 We can be the raw context (`any`) using the `getContext` selector:
 
 ```
-context = this.store.pipe(select(getContext));
+context = this.store.pipe(select(TraverserSelectors.getContext));
 ```
 
 But the `TraverserContext` function allows to get a typed context:
@@ -80,7 +82,7 @@ Let's say we need the list of all the posts from the current month when displayi
 We can get the folder content from the state:
 
 ```
-folder = TraverserSelectors.TraverserResource<Folder>(this.store, '..');
+folder = TraverserSelectors.TraverseTo<Folder>(this.store, '..');
 ```
 
 Assuming the current context path is `/2019/07/10`, it retrieves the content of `/2019/07`.
