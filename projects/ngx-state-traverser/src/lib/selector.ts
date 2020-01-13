@@ -173,4 +173,15 @@ export namespace TraverserSelectors {
             map(context => (context as T))
         );
     }
+
+    export function getTileContext(name: string) {
+        return createSelector(
+            traversalSelector,
+            (state: TraversingState): any => {
+                if (!!state.tiles[name]) {
+                    return state.tiles[name].context;
+                }
+            }
+        );
+    }
 }

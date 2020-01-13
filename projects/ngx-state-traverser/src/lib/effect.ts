@@ -3,7 +3,7 @@ import { Traverser } from 'angular-traversal';
 import { TraverserActions } from './actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 
 @Injectable()
 export class StateTraverserEffect {
@@ -20,6 +20,18 @@ export class StateTraverserEffect {
         );
 
     @Effect()
+    watchTiles = this.actions
+        .pipe(
+            ofType('[Traversing] Watch'),
+            mergeMap(() => this.traverser.tileUpdates
+                .pipe(
+                    map(({tile, target}) => new TraverserActions.UpdateTile({tile, target})),
+                    catchError(() => EMPTY)
+                )
+            )
+        );
+
+    @Effect()
     request = this.actions
         .pipe(
             ofType<TraverserActions.Traverse>(TraverserActions.Types.Traverse),
@@ -30,6 +42,14 @@ export class StateTraverserEffect {
                 )
             )
         );
+
+    @Effect({dispatch: false})
+    loadTile = this.actions
+        .pipe(
+            ofType<TraverserActions.LoadTile>(TraverserActions.Types.LoadTile),
+            tap(action => this.traverser.loadTile(action.payload.tile, action.payload.path))
+        );
+
     constructor(
         private readonly actions: Actions,
         private traverser: Traverser,

@@ -7,6 +7,7 @@ export enum TraversingStateFeatures {
 export interface TraversingState {
     target: Target;
     collection: {[path: string]: any};
+    tiles: {[name: string]: Target};
 }
 
 export const initialState: TraversingState = {
@@ -20,4 +21,5 @@ export const initialState: TraversingState = {
         view: 'view',
     },
     collection: {},
+    tiles: {},
 };
