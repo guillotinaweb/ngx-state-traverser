@@ -1,3 +1,7 @@
+# 1.1.0 (2020-01-28)
+
+- Tile support
+
 # 1.0.6 (2019-11-02)
 
 - Add Travis and fix demo and test setup

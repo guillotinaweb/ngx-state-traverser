@@ -105,3 +105,15 @@ this.store.dispatch(new TraverserActions.UpdateTraverserResource({
     }
 }));
 ```
+
+## Tiles
+
+With `angular-traversal`, we manage the main page view, but it also allows to define small blocks within the current page (named tiles).
+
+See the [angular-traversal documentation](https://github.com/guillotinaweb/angular-traversal#tiles) for more details.
+
+We can load a context in a tile by doing:
+
+```typescript
+this.store.dispatch(new TraverserActions.LoadTile({tile: 'details', path}));
+```
