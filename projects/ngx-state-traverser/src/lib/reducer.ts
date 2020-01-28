@@ -39,6 +39,7 @@ export function reducer(state = initialState, action: TraverserActions.Actions):
                 contextPath = contextPath.slice(0, -1);
             }
             return {
+                ...state,
                 target: action.payload,
                 collection: {
                     ...state.collection,
@@ -88,6 +89,15 @@ export function reducer(state = initialState, action: TraverserActions.Actions):
                 collection: {
                     ...state.collection,
                     [action.payload]: {isPending: true}
+                }
+            };
+        }
+        case TraverserActions.Types.UpdateTile: {
+            return {
+                ...state,
+                tiles: {
+                    ...state.tiles,
+                    [action.payload.tile]: action.payload.target,
                 }
             };
         }

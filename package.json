@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod nsc-test",
+    "build": "ng build --prod nst-test",
     "build:lib": "ng build --prod ngx-state-traverser && cp ./README.md ./dist/ngx-state-traverser/",
     "test": "jest",
     "lint": "ng lint",

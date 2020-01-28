@@ -22,10 +22,15 @@ It also allows to map several views for a given type (like the `@@edit` view for
 
 We declare some views for our data type (`view` is the default view name):
 
-```
+```typescript
 traverser.addView('view', 'post', PostComponent);
 traverser.addView('edit', 'post', EditPostComponent);
 traverser.addView('view', 'user', UserProfileComponent);
+```
+
+And we connect traversing to our state:
+```typescript
+this.store.dispatch({ type: TraverserActions.Types.Watch});
 ```
 
 Then the app is able to expose the following pathes:
@@ -43,7 +48,7 @@ The `<traverser-outlet></traverser-outlet>` will load the current context accord
 
 Any template might contain some links like:
 
-```
+```html
 <a traverseTo="/2019/07/new-post">
 <a [traverseTo]="relatedPost">
 <a traverseTo="..">
@@ -53,7 +58,7 @@ Note: here and later on, the provided link can be either a full path (`/2019/07/
 
 In code, we can navigate by dispatching an action:
 
-```
+```typescript
 this.store.dispatch(new TraverserActions.Traverse('../eric'))
 ```
 
@@ -63,13 +68,13 @@ The component gets the `context` from the state.
 
 We can be the raw context (`any`) using the `getContext` selector:
 
-```
+```typescript
 context = this.store.pipe(select(TraverserSelectors.getContext));
 ```
 
 But the `TraverserContext` function allows to get a typed context:
 
-```
+```typescript
 context = TraverserSelectors.TraverserContext<UserProfile>(this.store);
 ```
 
@@ -81,7 +86,7 @@ Let's say we need the list of all the posts from the current month when displayi
 
 We can get the folder content from the state:
 
-```
+```typescript
 folder = TraverserSelectors.TraverseTo<Folder>(this.store, '..');
 ```
 
@@ -91,17 +96,31 @@ All the traversed resources are stored in the state, but if the requested resour
 
 As the state acts as a cache system, it can be cleaned on demand:
 
-```
+```typescript
 this.store.dispatch(new TraverserActions.CleanTraverserResources(['../eric', '/2019/*']))
 ```
 
 And it can be updated:
 
-```
+```typescript
 this.store.dispatch(new TraverserActions.UpdateTraverserResource({
     path: '/2019/07/03',
     changes: {
         title: "New title"
     }
 }));
+```
+
+## Tiles
+
+`angular-traversal` allows to manage the main page view.
+
+Since version 1.3.0, it also allows to define small blocks within the current page (named "tiles").
+
+See the [angular-traversal documentation](https://github.com/guillotinaweb/angular-traversal#tiles) for more details.
+
+We can load a context in a tile by doing:
+
+```typescript
+this.store.dispatch(new TraverserActions.LoadTile({tile: 'details', path}));
 ```

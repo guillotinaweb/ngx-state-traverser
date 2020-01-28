@@ -2,6 +2,6 @@
     <li *ngFor="let entry of (context | async)">
         <a [traverseTo]="entry.url">
             {{ entry.name }}
-        </a>
+        </a> <button (click)="showDetails(entry.url)">Details</button>
     </li>
 </ul>

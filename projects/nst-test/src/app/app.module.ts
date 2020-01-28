@@ -21,6 +21,8 @@ import { StateTraverserModule } from 'ngx-state-traverser';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { FolderDetailsComponent } from './folder/folder-details.component';
+import { NoDetailsComponent } from './no-details.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +30,9 @@ import { EffectsModule } from '@ngrx/effects';
         FileComponent,
         FolderComponent,
         FileInfoComponent,
-        NavigationComponent
+        NavigationComponent,
+        FolderDetailsComponent,
+        NoDetailsComponent,
     ],
     imports: [
         StoreModule.forRoot({}),
@@ -45,7 +49,9 @@ import { EffectsModule } from '@ngrx/effects';
     entryComponents: [
         FileComponent,
         FolderComponent,
-        FileInfoComponent
+        FileInfoComponent,
+        FolderDetailsComponent,
+        NoDetailsComponent,
     ],
     providers: [
         { provide: Resolver, useClass: BasicHttpResolver },
