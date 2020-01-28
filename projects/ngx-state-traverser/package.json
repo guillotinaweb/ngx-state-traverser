@@ -32,7 +32,7 @@
     "@ngrx/core": "^1.2.0",
     "@ngrx/effects": "^7.4.0",
     "@ngrx/store": "^7.4.0",
-    "angular-traversal": "latest"
+    "angular-traversal": "^1.3.0"
   },
   "private": false
 }

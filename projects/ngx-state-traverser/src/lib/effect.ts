@@ -10,7 +10,7 @@ export class StateTraverserEffect {
     @Effect()
     watchTraversing = this.actions
         .pipe(
-            ofType('[Traversing] Watch'),
+            ofType(TraverserActions.Types.Watch),
             mergeMap(() => this.traverser.target
                 .pipe(
                     map(target => new TraverserActions.ResolveContext(target)),
@@ -22,7 +22,7 @@ export class StateTraverserEffect {
     @Effect()
     watchTiles = this.actions
         .pipe(
-            ofType('[Traversing] Watch'),
+            ofType(TraverserActions.Types.Watch),
             mergeMap(() => this.traverser.tileUpdates
                 .pipe(
                     map(({tile, target}) => new TraverserActions.UpdateTile({tile, target})),
