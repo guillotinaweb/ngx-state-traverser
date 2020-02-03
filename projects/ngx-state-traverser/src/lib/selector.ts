@@ -104,6 +104,21 @@ export namespace TraverserSelectors {
         }
     );
 
+    export const getContextChildren = createSelector(
+        traversalSelector,
+        getContextPath,
+        (
+            state: TraversingState,
+            contextPath: string,
+        ): { [key: string]: any }[] => Object.entries(state.collection).reduce((children, [id, obj]) => {
+            const parentPath = id.substring(0, id.lastIndexOf('/'));
+            if (parentPath === contextPath) {
+                children.push(obj);
+            }
+            return children;
+        }, [] as { [key: string]: any }[])
+    );
+
     export const getAncestors = createSelector(
         traversalSelector,
         (state: TraversingState, path: string): ContextOrMissing[] => {
