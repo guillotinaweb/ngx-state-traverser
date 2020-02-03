@@ -1,3 +1,8 @@
+# 1.1.1 (2020-02-05)
+
+- Allow to select children
+- Allow to resolve several contexts at once
+
 # 1.1.0 (2020-01-28)
 
 - Tile support
