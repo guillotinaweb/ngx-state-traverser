@@ -7,6 +7,7 @@ export namespace TraverserActions {
         Traverse = '[Traversal] Traverse',
         ResolveContext = '[Traversal] Resolve context',
         Resolve = '[Traversal] Resolve',
+        ResolveMany = '[Traversal] Resolve many',
         CleanTraverserResources = '[Traversal] Clean resources',
         UpdateTraverserResource = '[Traversal] Update resources',
         LoadTile = '[Traversal] Load tile',
@@ -26,6 +27,11 @@ export namespace TraverserActions {
     export class Resolve implements Action {
         readonly type = Types.Resolve;
         constructor(readonly payload: {path: string, object: any}) {}
+    }
+
+    export class ResolveMany implements Action {
+        readonly type = Types.ResolveMany;
+        constructor(readonly payload: {path: string, object: any}[]) {}
     }
 
     export class CleanTraverserResources implements Action {
@@ -52,6 +58,7 @@ export namespace TraverserActions {
         | Traverse
         | ResolveContext
         | Resolve
+        | ResolveMany
         | CleanTraverserResources
         | UpdateTraverserResource
         | LoadTile

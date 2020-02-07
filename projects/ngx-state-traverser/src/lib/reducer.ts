@@ -60,6 +60,23 @@ export function reducer(state = initialState, action: TraverserActions.Actions):
                 },
             };
         }
+        case TraverserActions.Types.ResolveMany: {
+            const collection = action.payload.reduce((all, current) => {
+                let path = current.path;
+                if (!!path && path.endsWith('/')) {
+                    path = path.slice(0, -1);
+                }
+                all[path] = current.object;
+                return all;
+            }, {});
+            return {
+                ...state,
+                collection: {
+                    ...state.collection,
+                    ...collection,
+                },
+            };
+        }
         case TraverserActions.Types.CleanTraverserResources: {
             const exactPathes = action.payload.filter(path => !path.endsWith('*'));
             const startPathes = action.payload.filter(path => path.endsWith('*')).map(path => path.slice(0, -1));
