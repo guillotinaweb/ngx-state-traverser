@@ -6,6 +6,8 @@ import { TraverserSelectors, TraversingState } from 'ngx-state-traverser';
 export class GithubFile {
     content?: string;
     name?: string;
+    sha?: string;
+    size?: number;
 }
 
 @Component({
