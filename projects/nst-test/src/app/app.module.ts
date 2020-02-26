@@ -46,13 +46,6 @@ import { NoDetailsComponent } from './no-details.component';
         TraversalModule,
         StateTraverserModule,
     ],
-    entryComponents: [
-        FileComponent,
-        FolderComponent,
-        FileInfoComponent,
-        FolderDetailsComponent,
-        NoDetailsComponent,
-    ],
     providers: [
         { provide: Resolver, useClass: BasicHttpResolver },
         { provide: BACKEND_BASE_URL, useValue: 'https://api.github.com/repos' },
