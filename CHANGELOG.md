@@ -1,3 +1,8 @@
+# 1.2.1 (2020-03-27)
+
+## Improvement
+- Allow to empty a tile (require angular-traversal 1.5.1 or higher) [mathilde-pellerin]
+
 # 1.2.0 (2020-02-24)
 
 - Upgrade to Angular 9

@@ -124,3 +124,9 @@ We can load a context in a tile by doing:
 ```typescript
 this.store.dispatch(new TraverserActions.LoadTile({tile: 'details', path}));
 ```
+
+and remove it by doing:
+
+```typescript
+this.store.dispatch(new TraverserActions.EmptyTile({tile: 'details'}));
+```

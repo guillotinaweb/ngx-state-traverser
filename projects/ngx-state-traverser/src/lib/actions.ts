@@ -12,6 +12,7 @@ export namespace TraverserActions {
         UpdateTraverserResource = '[Traversal] Update resources',
         LoadTile = '[Traversal] Load tile',
         UpdateTile = '[Traversal] Set tile context',
+        EmptyTile = '[Traversal] empty tile',
     }
 
     export class Traverse implements Action {
@@ -54,6 +55,11 @@ export namespace TraverserActions {
         constructor(readonly payload: {tile: string, target: Target}) {}
     }
 
+    export class EmptyTile implements Action {
+        readonly type = Types.EmptyTile;
+        constructor(readonly payload: {tile: string}) {}
+    }
+
     export type Actions =
         | Traverse
         | ResolveContext
@@ -62,5 +68,7 @@ export namespace TraverserActions {
         | CleanTraverserResources
         | UpdateTraverserResource
         | LoadTile
-        | UpdateTile;
+        | UpdateTile
+        | EmptyTile
+        ;
 }
