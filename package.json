@@ -24,7 +24,7 @@
     "@ngrx/core": "^1.2.0",
     "@ngrx/effects": "^8.1.0",
     "@ngrx/store": "^8.1.0",
-    "angular-traversal": "latest",
+    "angular-traversal": "1.5.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

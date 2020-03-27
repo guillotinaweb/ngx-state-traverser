@@ -31,7 +31,8 @@
     "@angular/core": "^9.0.2",
     "@ngrx/core": "^1.2.0",
     "@ngrx/effects": "^8.6.0",
-    "@ngrx/store": "^8.6.0"
+    "@ngrx/store": "^8.6.0",
+    "angular-traversal": "^1.5.1"
   },
   "private": false
 }
