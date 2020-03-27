@@ -50,6 +50,13 @@ export class StateTraverserEffect {
             tap(action => this.traverser.loadTile(action.payload.tile, action.payload.path))
         );
 
+    @Effect({dispatch: false})
+    emptyTile = this.actions
+        .pipe(
+            ofType<TraverserActions.LoadTile>(TraverserActions.Types.EmptyTile),
+            tap(action => this.traverser.emptyTile(action.payload.tile))
+        );
+
     constructor(
         private readonly actions: Actions,
         private traverser: Traverser,
