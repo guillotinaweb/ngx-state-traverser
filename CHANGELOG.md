@@ -1,3 +1,7 @@
+# 1.2.2 (unreleased)
+
+- Upgrade to Angular 9.1
+
 # 1.2.1 (2020-03-27)
 
 ## Improvement

@@ -35,7 +35,10 @@ import { NoDetailsComponent } from './no-details.component';
         NoDetailsComponent,
     ],
     imports: [
-        StoreModule.forRoot({}),
+        StoreModule.forRoot({}, { runtimeChecks: {
+            strictStateImmutability: false,
+            strictActionImmutability: false,
+        }}),
         StoreDevtoolsModule.instrument({
             maxAge: 25
         }),

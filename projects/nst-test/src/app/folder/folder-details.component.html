@@ -1,1 +1,1 @@
-<div>This folder contains {{ (tileContext | async).length }} elements</div>
+<div>This folder contains {{ ((tileContext | async) || []).length }} elements</div>
