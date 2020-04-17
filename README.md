@@ -130,3 +130,14 @@ and remove it by doing:
 ```typescript
 this.store.dispatch(new TraverserActions.EmptyTile({tile: 'details'}));
 ```
+
+## NgRX state
+
+Due to a bug in NgRX 9.0, we need to set `strictStateImmutability` and `strictActionImmutability` to false.
+
+```typescript
+StoreModule.forRoot({}, { runtimeChecks: {
+    strictStateImmutability: false,
+    strictActionImmutability: false,
+}}),
+```
