@@ -1,5 +1,6 @@
 # 1.2.2 (2020-05-24)
 
+- Fix context update on resource update 
 - Upgrade to Angular 9.1
 - Fix context update on resource update 
 

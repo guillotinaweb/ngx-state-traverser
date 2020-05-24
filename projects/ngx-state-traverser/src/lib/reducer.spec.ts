@@ -78,8 +78,10 @@ describe('Traverser reducer', () => {
                 },
             }
         }));
+        expect(state2.target.context.father.name).toEqual('Anakin');
         expect(state2.collection['/luke'].father.name).toEqual('Anakin');
         expect(state2.collection['/luke'].midichlorians).toEqual('high');
+        expect(state2.target.context.midichlorians).toEqual('high');
     });
 
     it('should update context when updating collection if same path', () => {
