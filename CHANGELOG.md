@@ -1,6 +1,7 @@
-# 1.2.2 (unreleased)
+# 1.2.2 (2020-05-24)
 
 - Upgrade to Angular 9.1
+- Fix context update on resource update 
 
 # 1.2.1 (2020-03-27)
 

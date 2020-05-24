@@ -52,13 +52,19 @@ export function reducer(state = initialState, action: TraverserActions.Actions):
             if (!!path && path.endsWith('/')) {
                 path = path.slice(0, -1);
             }
-            return {
-                ...state,
-                collection: {
-                    ...state.collection,
-                    [path]: action.payload.object,
-                },
+            const collection = {
+                ...state.collection,
+                [path]: action.payload.object,
             };
+            if (state.target.path === path) {
+                return {
+                    ...state,
+                    target: {...state.target, context: action.payload.object},
+                    collection,
+                };
+            } else {
+                return { ...state, collection };
+            }
         }
         case TraverserActions.Types.ResolveMany: {
             const collection = action.payload.reduce((all, current) => {
@@ -92,13 +98,20 @@ export function reducer(state = initialState, action: TraverserActions.Actions):
             };
         }
         case TraverserActions.Types.UpdateTraverserResource: {
-            return {
-                ...state,
-                collection: {
-                    ...state.collection,
-                    [action.payload.path]: mergeDeep({...state.collection[action.payload.path]}, action.payload.changes),
-                }
+            const resource = mergeDeep({...state.collection[action.payload.path]}, action.payload.changes);
+            const collection = {
+                ...state.collection,
+                [action.payload.path]: resource,
             };
+            if (state.target.path === action.payload.path) {
+                return {
+                    ...state,
+                    target: {...state.target, context: resource},
+                    collection,
+                };
+            } else {
+                return { ...state, collection, };
+            }
         }
         case TraverserActions.Types.Traverse: {
             return {
