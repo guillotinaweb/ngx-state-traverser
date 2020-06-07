@@ -1,3 +1,7 @@
+# 1.2.3 (2020-06-07)
+
+- Fix context path matching on resource update 
+
 # 1.2.2 (2020-05-24)
 
 - Fix context update on resource update 
