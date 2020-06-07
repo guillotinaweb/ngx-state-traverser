@@ -8,7 +8,7 @@ import { TraverserActions } from './actions';
  * @author inspired by [jhildenbiddle](https://stackoverflow.com/a/48218209).
  * @source https://gist.github.com/ahtcx/0cd94e62691f539160b32ecda18af3d6#gistcomment-2930530
  */
-function mergeDeep(target, source) {
+export function deepMerge(target, source) {
     const isObject = (obj) => obj && typeof obj === 'object';
 
     if (!isObject(target) || !isObject(source)) {
@@ -22,7 +22,7 @@ function mergeDeep(target, source) {
         if (Array.isArray(targetValue) && Array.isArray(sourceValue)) {
             target[key] = targetValue.concat(sourceValue);
         } else if (isObject(targetValue) && isObject(sourceValue)) {
-            target[key] = mergeDeep(Object.assign({}, targetValue), sourceValue);
+            target[key] = deepMerge(Object.assign({}, targetValue), sourceValue);
         } else {
             target[key] = sourceValue;
         }
@@ -56,7 +56,7 @@ export function reducer(state = initialState, action: TraverserActions.Actions):
                 ...state.collection,
                 [path]: action.payload.object,
             };
-            if (state.target.path === path) {
+            if (state.target.contextPath === path) {
                 return {
                     ...state,
                     target: {...state.target, context: action.payload.object},
@@ -98,12 +98,12 @@ export function reducer(state = initialState, action: TraverserActions.Actions):
             };
         }
         case TraverserActions.Types.UpdateTraverserResource: {
-            const resource = mergeDeep({...state.collection[action.payload.path]}, action.payload.changes);
+            const resource = deepMerge({...state.collection[action.payload.path]}, action.payload.changes);
             const collection = {
                 ...state.collection,
                 [action.payload.path]: resource,
             };
-            if (state.target.path === action.payload.path) {
+            if (state.target.contextPath === action.payload.path) {
                 return {
                     ...state,
                     target: {...state.target, context: resource},
