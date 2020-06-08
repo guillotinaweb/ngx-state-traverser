@@ -156,6 +156,7 @@ export namespace TraverserSelectors {
             map(context => {
                 if (context instanceof Missing) {
                     store.dispatch(new TraverserActions.Traverse(context.path));
+                    return;
                 } else {
                     return (context as T);
                 }

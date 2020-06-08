@@ -1,3 +1,7 @@
+# 1.2.4 (2020-06-08)
+
+- No implicit return
+
 # 1.2.3 (2020-06-07)
 
 - Fix context path matching on resource update 
