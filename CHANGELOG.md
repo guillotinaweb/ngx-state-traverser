@@ -1,3 +1,11 @@
+# 1.2.5 (2020-06-18)
+
+## Improvement
+- Add getView selector [ebrehault]
+
+## Bug fix
+- Clean up implicit any [ebrehault]
+
 # 1.2.4 (2020-06-08)
 
 - No implicit return

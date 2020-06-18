@@ -72,6 +72,11 @@ export namespace TraverserSelectors {
         (state: TraversingState): string => state.target.prefixedPath
     );
 
+    export const getView = createSelector(
+        traversalSelector,
+        (state: TraversingState): string => state.target.view
+    );
+
     export const isForbidden = createSelector(
         traversalSelector,
         (state: TraversingState): boolean => !!state.target.context.isForbidden
@@ -133,7 +138,7 @@ export namespace TraverserSelectors {
             }, [] as string[]);
 
             const ancestors: ContextOrMissing[] = ancestorPaths.map(ancestor => state.collection[ancestor] || new Missing(ancestor));
-            return ancestors.filter(ancestor => !ancestor['isForbidden']);
+            return ancestors.filter(ancestor => !(ancestor as any).isForbidden);
         }
     );
 

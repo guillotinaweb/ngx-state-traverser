@@ -8,8 +8,8 @@ import { TraverserActions } from './actions';
  * @author inspired by [jhildenbiddle](https://stackoverflow.com/a/48218209).
  * @source https://gist.github.com/ahtcx/0cd94e62691f539160b32ecda18af3d6#gistcomment-2930530
  */
-export function deepMerge(target, source) {
-    const isObject = (obj) => obj && typeof obj === 'object';
+export function deepMerge(target: any, source: any) {
+    const isObject = (obj: any) => obj && typeof obj === 'object';
 
     if (!isObject(target) || !isObject(source)) {
         return source;
@@ -67,7 +67,7 @@ export function reducer(state = initialState, action: TraverserActions.Actions):
             }
         }
         case TraverserActions.Types.ResolveMany: {
-            const collection = action.payload.reduce((all, current) => {
+            const collection = action.payload.reduce((all: {[path: string]: any}, current) => {
                 let path = current.path;
                 if (!!path && path.endsWith('/')) {
                     path = path.slice(0, -1);
@@ -86,7 +86,7 @@ export function reducer(state = initialState, action: TraverserActions.Actions):
         case TraverserActions.Types.CleanTraverserResources: {
             const exactPathes = action.payload.filter(path => !path.endsWith('*'));
             const startPathes = action.payload.filter(path => path.endsWith('*')).map(path => path.slice(0, -1));
-            const collection = Object.entries(state.collection).reduce((all, [path, obj]) => {
+            const collection = Object.entries(state.collection).reduce((all: {[path: string]: any}, [path, obj]) => {
                 if (!exactPathes.includes(path) && !startPathes.some(p => path.startsWith(p))) {
                     all[path] = obj;
                 }
