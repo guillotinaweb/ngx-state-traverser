@@ -1,3 +1,8 @@
+# 1.2.6 (2020-06-29)
+
+## Improvement
+- Upgrade to Angular 10 [ebrehault]
+
 # 1.2.5 (2020-06-18)
 
 ## Improvement
