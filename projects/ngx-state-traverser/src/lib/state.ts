@@ -1,16 +1,16 @@
 import { Target } from 'angular-traversal';
 
-export enum TraversingStateFeatures {
+export enum TraverserStateFeatures {
     Traversal = 'traversal',
 }
 
-export interface TraversingState {
+export interface TraverserState {
     target: Target;
     collection: {[path: string]: any};
     tiles: {[name: string]: Target};
 }
 
-export const initialState: TraversingState = {
+export const initialState: TraverserState = {
     target: {
         component: null,
         context: {},

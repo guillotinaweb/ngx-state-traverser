@@ -1,4 +1,4 @@
-import { initialState, TraversingState } from './state';
+import { initialState, TraverserState } from './state';
 import { TraverserActions } from './actions';
 
 /**
@@ -31,7 +31,7 @@ export function deepMerge(target: any, source: any) {
     return target;
 }
 
-export function reducer(state = initialState, action: TraverserActions.Actions): TraversingState {
+export function reducer(state = initialState, action: TraverserActions.Actions): TraverserState {
     switch (action.type) {
         case TraverserActions.Types.ResolveContext: {
             let contextPath = action.payload.contextPath;

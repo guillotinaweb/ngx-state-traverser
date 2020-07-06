@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { TraverserSelectors, TraversingState } from 'ngx-state-traverser';
+import { TraverserSelectors, TraverserState } from 'ngx-state-traverser';
 
 @Component({
   selector: 'app-folder-details',
@@ -10,7 +10,7 @@ export class FolderDetailsComponent {
 
     tileContext = this.store.pipe(select(TraverserSelectors.getTileContext('details')));
 
-    constructor(private readonly store: Store<TraversingState>) { }
+    constructor(private readonly store: Store<TraverserState>) { }
 
 
 }

@@ -20,7 +20,7 @@ It also allows to map several views for a given type (like the `@@edit` view for
 
 See [angular-traversal](https://github.com/guillotinaweb/angular-traversal) for more details.
 
-ngx-state-traverser stores each traversed context in a the TraversingState.
+ngx-state-traverser stores each traversed context in a the TraverserState.
 It contains the current context and a `collection` of all the previously traversed pathes.
 
 ## Type mapping
@@ -88,7 +88,7 @@ context = TraverserSelectors.TraverserContext<UserProfile>(this.store);
 Our angular-traversal resolver is triggered everytime we traverse to a given path.
 A typical implementation would just make the corresponding backend call to get the object.
 
-As ngx-state-traverser stores all the traversed objects in TraversingState, we could use it as a cache provider.
+As ngx-state-traverser stores all the traversed objects in TraverserState, we could use it as a cache ervider.
 
 To do so, we just need to put the `@StateResolver` decorator on our `resolve` method. Example:
 
@@ -104,11 +104,11 @@ resolve(path: string, view: string, queryString?: string): Observable<any> {
 }
 ```
 
-This decorator will return the requested object from TraversingState (if it exists).
+This decorator will return the requested object from TraverserState (if iterists).
 
 `maxAge` parameter allows to force backedn call if the stored object is older than `maxAge`. It is optional, if not defined, stored objects are systematically used.
 
-Important: `@StateResolver` will only work if we inject a TraversingState store (named `store`) in our `Resolver` service. The `StateFirst` interface will make sure it is the case (and will require `store` to be public).
+Important: `@StateResolver` will only work if we inject a TraverserState store (named `store`) in our `Resolver` service. The `StateFirst` interface will make sure it is the case (er will require `store` to be public).
 
 
 ## Accessing other resources

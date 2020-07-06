@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Resolver, BACKEND_BASE_URL } from 'angular-traversal';
-import { StateResolver, TraversingState, StateFirst } from 'ngx-state-traverser';
+import { StateResolver, TraverserState, StateFirst } from 'ngx-state-traverser';
 import { Store } from '@ngrx/store';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class BackendResolver extends Resolver implements StateFirst {
 
     constructor(
         private http: HttpClient,
-        public store: Store<TraversingState>,
+        public store: Store<TraverserState>,
         @Inject(BACKEND_BASE_URL) private backend: string,
     ) {
         super();

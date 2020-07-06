@@ -4,7 +4,7 @@ import { FileComponent } from './file/file.component';
 import { FileInfoComponent } from './file-info/file-info.component';
 import { FolderComponent } from './folder/folder.component';
 import { Store } from '@ngrx/store';
-import { TraversingState, TraverserActions } from 'ngx-state-traverser';
+import { TraverserState, TraverserActions } from 'ngx-state-traverser';
 import { FolderDetailsComponent } from './folder/folder-details.component';
 import { NoDetailsComponent } from './no-details.component';
 
@@ -18,7 +18,7 @@ export class AppComponent {
   repository = 'guillotinaweb/angular-traversal';
 
   constructor(
-    private readonly store: Store<TraversingState>,
+    private readonly store: Store<TraverserState>,
     traverser: Traverser,
   ) {
     this.store.dispatch({ type: TraverserActions.Types.Watch});

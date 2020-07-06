@@ -3,7 +3,7 @@ import { Target } from 'angular-traversal';
 
 export namespace TraverserActions {
     export enum Types {
-        Watch = '[Traversing] Watch',
+        Watch = '[Traversal] Watch',
         Traverse = '[Traversal] Traverse',
         ResolveContext = '[Traversal] Resolve context',
         Resolve = '[Traversal] Resolve',

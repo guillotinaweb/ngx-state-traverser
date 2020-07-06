@@ -2,10 +2,10 @@ import { select, Store } from '@ngrx/store';
 import { TraverserSelectors } from './selector';
 import { concatMap, map, take } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { TraversingState } from './state';
+import { TraverserState } from './state';
 
 export interface StateFirst {
-    store: Store<TraversingState>;
+    store: Store<TraverserState>;
 }
 
 export const StateResolver = (params?: { maxAge: number }) => {

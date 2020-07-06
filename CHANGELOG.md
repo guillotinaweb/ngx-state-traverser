@@ -1,3 +1,11 @@
+# 1.3.0 (2020-07-06)
+
+## New feature
+- `StateResolver` decorator to enable state-first mode on any resolver [ebrehault]  
+
+## Improvement
+- Rename TraversingState in TraverserState [ebrehault]
+
 # 1.2.6 (2020-06-29)
 
 ## Improvement
