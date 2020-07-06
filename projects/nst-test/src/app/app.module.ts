@@ -23,6 +23,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { FolderDetailsComponent } from './folder/folder-details.component';
 import { NoDetailsComponent } from './no-details.component';
+import { BackendResolver } from './resolver';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,7 @@ import { NoDetailsComponent } from './no-details.component';
         StateTraverserModule,
     ],
     providers: [
-        { provide: Resolver, useClass: BasicHttpResolver },
+        { provide: Resolver, useClass: BackendResolver },
         { provide: BACKEND_BASE_URL, useValue: 'https://api.github.com/repos' },
         { provide: Marker, useClass: TypeMarker },
         { provide: Normalizer, useClass: FullPathNormalizer },
