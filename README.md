@@ -18,6 +18,11 @@ Traversing replaces routing by implementing the same principle. Instead of mappi
 
 It also allows to map several views for a given type (like the `@@edit` view for a post will use a different component than the default view).
 
+See [angular-traversal](https://github.com/guillotinaweb/angular-traversal) for more details.
+
+ngx-state-traverser stores each traversed context in a the TraverserState.
+It contains the current context and a `collection` of all the previously traversed pathes.
+
 ## Type mapping
 
 We declare some views for our data type (`view` is the default view name):
@@ -77,6 +82,34 @@ But the `TraverserContext` function allows to get a typed context:
 ```typescript
 context = TraverserSelectors.TraverserContext<UserProfile>(this.store);
 ```
+
+## State-first resolver
+
+Our angular-traversal resolver is triggered everytime we traverse to a given path.
+A typical implementation would just make the corresponding backend call to get the object.
+
+As ngx-state-traverser stores all the traversed objects in TraverserState, we could use it as a cache ervider.
+
+To do so, we just need to put the `@StateResolver` decorator on our `resolve` method. Example:
+
+```ts
+@StateResolver({
+    maxAge: 60 * 1000,
+})
+resolve(path: string, view: string, queryString?: string): Observable<any> {
+    const headers = new HttpHeaders()
+        .append('Accept', 'application/json')
+        .append('Content-Type', 'application/json');
+    return this.http.get(this.backend + path, { headers });
+}
+```
+
+This decorator will return the requested object from TraverserState (if iterists).
+
+`maxAge` parameter allows to force backedn call if the stored object is older than `maxAge`. It is optional, if not defined, stored objects are systematically used.
+
+Important: `@StateResolver` will only work if we inject a TraverserState store (named `store`) in our `Resolver` service. The `StateFirst` interface will make sure it is the case (er will require `store` to be public).
+
 
 ## Accessing other resources
 

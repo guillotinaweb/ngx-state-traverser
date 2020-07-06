@@ -3,13 +3,14 @@ import { Target } from 'angular-traversal';
 
 export namespace TraverserActions {
     export enum Types {
-        Watch = '[Traversing] Watch',
+        Watch = '[Traversal] Watch',
         Traverse = '[Traversal] Traverse',
         ResolveContext = '[Traversal] Resolve context',
         Resolve = '[Traversal] Resolve',
         ResolveMany = '[Traversal] Resolve many',
         CleanTraverserResources = '[Traversal] Clean resources',
-        UpdateTraverserResource = '[Traversal] Update resources',
+        UpdateTraverserResource = '[Traversal] Update resource',
+        AddOrUpdateTraverserResources = '[Traversal] Add or update resources',
         LoadTile = '[Traversal] Load tile',
         UpdateTile = '[Traversal] Set tile context',
         EmptyTile = '[Traversal] empty tile',
@@ -45,6 +46,11 @@ export namespace TraverserActions {
         constructor(readonly payload: {path: string, changes: {[key: string]: any}}) {}
     }
 
+    export class AddOrUpdateTraverserResources implements Action {
+        readonly type = Types.AddOrUpdateTraverserResources;
+        constructor(readonly payload: {path: string, changes: {[key: string]: any}}[]) {}
+    }
+
     export class LoadTile implements Action {
         readonly type = Types.LoadTile;
         constructor(readonly payload: {tile: string, path: string}) {}
@@ -67,6 +73,7 @@ export namespace TraverserActions {
         | ResolveMany
         | CleanTraverserResources
         | UpdateTraverserResource
+        | AddOrUpdateTraverserResources
         | LoadTile
         | UpdateTile
         | EmptyTile

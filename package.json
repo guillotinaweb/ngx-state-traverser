@@ -8,7 +8,7 @@
     "build:lib": "ng build --prod ngx-state-traverser && cp ./README.md ./dist/ngx-state-traverser/",
     "test": "jest",
     "lint": "ng lint",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watchAll",
     "get_version": "cat ./projects/ngx-state-traverser/package.json | grep version  | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'"
   },
   "private": true,

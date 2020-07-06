@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector, select, Store } from '@ngrx/store';
-import { TraversingState, TraversingStateFeatures } from './state';
+import { TraverserState, TraverserStateFeatures } from './state';
 import { Target } from 'angular-traversal';
 import { map, filter, tap } from 'rxjs/operators';
 import { TraverserActions } from './actions';
@@ -35,7 +35,7 @@ export namespace TraverserSelectors {
 
     type ContextOrMissing = { [key: string]: any } | Missing;
 
-    function _getParentPath(state: TraversingState): string {
+    function _getParentPath(state: TraverserState): string {
         let targetPath = state.target.contextPath;
         if (targetPath.endsWith('/')) {
             targetPath = targetPath.slice(0, -1);
@@ -43,48 +43,48 @@ export namespace TraverserSelectors {
         return targetPath.split('/').slice(0, -1).join('/');
     }
 
-    export const traversalSelector = createFeatureSelector<TraversingState>(
-        TraversingStateFeatures.Traversal
+    export const traversalSelector = createFeatureSelector<TraverserState>(
+        TraverserStateFeatures.Traversal
     );
 
     export const getTarget = createSelector(
         traversalSelector,
-        (state: TraversingState): Target => state.target
+        (state: TraverserState): Target => state.target
     );
 
     export const getContextPath = createSelector(
         traversalSelector,
-        (state: TraversingState): string => state.target.contextPath
+        (state: TraverserState): string => state.target.contextPath
     );
 
     export const getPrefixedContextPath = createSelector(
         traversalSelector,
-        (state: TraversingState): string => state.target.prefixedContextPath
+        (state: TraverserState): string => state.target.prefixedContextPath
     );
 
     export const getPath = createSelector(
         traversalSelector,
-        (state: TraversingState): string => state.target.path
+        (state: TraverserState): string => state.target.path
     );
 
     export const getPrefixedPath = createSelector(
         traversalSelector,
-        (state: TraversingState): string => state.target.prefixedPath
+        (state: TraverserState): string => state.target.prefixedPath
     );
 
     export const getView = createSelector(
         traversalSelector,
-        (state: TraversingState): string => state.target.view
+        (state: TraverserState): string => state.target.view
     );
 
     export const isForbidden = createSelector(
         traversalSelector,
-        (state: TraversingState): boolean => !!state.target.context.isForbidden
+        (state: TraverserState): boolean => !!state.target.context.isForbidden
     );
 
     export const getContext = createSelector(
         traversalSelector,
-        (state: TraversingState): { [key: string]: any } => state.target.context
+        (state: TraverserState): { [key: string]: any } => state.target.context
     );
 
     export function TraverserContext<T>(store: Store<any>) {
@@ -96,14 +96,14 @@ export namespace TraverserSelectors {
 
     export const getParentPath = createSelector(
         traversalSelector,
-        (state: TraversingState): string => {
+        (state: TraverserState): string => {
             return _getParentPath(state);
         }
     );
 
     export const getParent = createSelector(
         traversalSelector,
-        (state: TraversingState): ContextOrMissing => {
+        (state: TraverserState): ContextOrMissing => {
             const parentPath = _getParentPath(state);
             return state.collection[parentPath] || new Missing(parentPath);
         }
@@ -113,7 +113,7 @@ export namespace TraverserSelectors {
         traversalSelector,
         getContextPath,
         (
-            state: TraversingState,
+            state: TraverserState,
             contextPath: string,
         ): { [key: string]: any }[] => Object.entries(state.collection).reduce((children, [id, obj]) => {
             const parentPath = id.substring(0, id.lastIndexOf('/'));
@@ -126,7 +126,7 @@ export namespace TraverserSelectors {
 
     export const getAncestors = createSelector(
         traversalSelector,
-        (state: TraversingState, path: string): ContextOrMissing[] => {
+        (state: TraverserState, path: string): ContextOrMissing[] => {
             path = getFullPath(path, state.target.contextPath);
             const ancestorPaths = path.split('/').filter(chunk => !!chunk).reduce((allChunks, chunk) => {
                 if (allChunks.length === 0) {
@@ -172,7 +172,7 @@ export namespace TraverserSelectors {
     export function getObjectByPath(path: string) {
         return createSelector(
             traversalSelector,
-            (state: TraversingState): ContextOrMissing => {
+            (state: TraverserState): ContextOrMissing => {
                 path = getFullPath(path, state.target.contextPath);
                 return state.collection[path] || new Missing(path);
             }
@@ -198,7 +198,7 @@ export namespace TraverserSelectors {
     export function getTileContext(name: string) {
         return createSelector(
             traversalSelector,
-            (state: TraversingState): any => {
+            (state: TraverserState): any => {
                 if (!!state.tiles[name]) {
                     return state.tiles[name].context;
                 }

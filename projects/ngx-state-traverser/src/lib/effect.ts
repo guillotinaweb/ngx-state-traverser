@@ -8,7 +8,7 @@ import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 @Injectable()
 export class StateTraverserEffect {
     @Effect()
-    watchTraversing = this.actions
+    watchTraverser = this.actions
         .pipe(
             ofType(TraverserActions.Types.Watch),
             mergeMap(() => this.traverser.target

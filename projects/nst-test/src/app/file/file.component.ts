@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
-import { TraverserSelectors, TraversingState } from 'ngx-state-traverser';
+import { TraverserSelectors, TraverserState } from 'ngx-state-traverser';
 
 export class GithubFile {
     content?: string;
@@ -22,7 +22,7 @@ export class FileComponent implements OnInit {
   // will work in any level-2 file
   readme = TraverserSelectors.TraverseTo<GithubFile>(this.store, '../../README.md').pipe(map(f => f.name));
 
-  constructor(private readonly store: Store<TraversingState>) { }
+  constructor(private readonly store: Store<TraverserState>) { }
 
   ngOnInit() {
     TraverserSelectors.TraverserContext<GithubFile>(this.store).subscribe(context => {
