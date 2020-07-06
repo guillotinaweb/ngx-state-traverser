@@ -5,6 +5,7 @@
 
 ## Improvement
 - Rename TraversingState in TraverserState [ebrehault]
+- AddOrUpdateTraverserResources action [ebrehault]
 
 # 1.2.6 (2020-06-29)
 

@@ -113,6 +113,27 @@ export function reducer(state = initialState, action: TraverserActions.Actions):
                 return { ...state, collection, };
             }
         }
+        case TraverserActions.Types.AddOrUpdateTraverserResources: {
+            let newContext: any;
+            const collection = action.payload.reduce((acc, value) => {
+                const updatedObject = !!state.collection[value.path] ? deepMerge({...state.collection[value.path]}, value.changes) :
+                    value.changes;
+                if (state.target.contextPath === value.path) {
+                    newContext = updatedObject;
+                }
+                acc[value.path] = updatedObject;
+                return acc;
+            }, {...state.collection});
+            if (!!newContext) {
+                return {
+                    ...state,
+                    target: {...state.target, context: newContext},
+                    collection,
+                };
+            } else {
+                return { ...state, collection, };
+            }
+        }
         case TraverserActions.Types.Traverse: {
             return {
                 ...state,

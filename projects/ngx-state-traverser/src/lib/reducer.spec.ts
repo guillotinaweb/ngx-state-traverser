@@ -108,4 +108,66 @@ describe('Traverser reducer', () => {
         expect(state2.collection['/rey'].father.name).toEqual('Skywalker');
         expect(state2.target.context.father.name).toEqual('Skywalker');
     });
+
+    it('should add or update collection', () => {
+        const state1 = reducer(initialState, new TraverserActions.Resolve({
+            path: '/luke',
+            object: {
+                jedi: 'Luke',
+                midichlorians: 'high',
+                father: {
+                    name: 'Vador',
+                }
+            }
+        }));
+        const state2 = reducer(state1, new TraverserActions.AddOrUpdateTraverserResources([
+            {
+                path: '/luke',
+                changes: {
+                    father: {
+                        name: 'Anakin'
+                    },
+                }
+            },
+            {
+                path: '/leia',
+                changes: {
+                    midichlorians: 'high',
+                    father: {
+                        name: 'Anakin'
+                    },
+                }
+            },
+        ]));
+        expect(state2.collection['/luke'].father.name).toEqual('Anakin');
+        expect(state2.collection['/luke'].midichlorians).toEqual('high');
+        expect(state2.collection['/leia'].midichlorians).toEqual('high');
+    });
+
+    it('should update context when batch updating collection if same path', () => {
+        const state1 = reducer(initialState, new TraverserActions.ResolveContext({
+            path: '/rey',
+            contextPath: '/rey',
+            view: 'view',
+            prefixedContextPath: '/rey',
+            prefixedPath: '/rey',
+            component: null,
+            context: {
+                jedi: 'Rey',
+                father: {
+                    name: 'Unknown'
+                },
+            }
+        }));
+        const state2 = reducer(state1, new TraverserActions.AddOrUpdateTraverserResources([{
+            path: '/rey',
+            changes: {
+                father: {
+                    name: 'Skywalker'
+                },
+            }
+        }]));
+        expect(state2.collection['/rey'].father.name).toEqual('Skywalker');
+        expect(state2.target.context.father.name).toEqual('Skywalker');
+    });
 });
