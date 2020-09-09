@@ -5,6 +5,7 @@ export namespace TraverserActions {
     export enum Types {
         Watch = '[Traversal] Watch',
         Traverse = '[Traversal] Traverse',
+        TraverseAndNavigate = '[Traversal] Traverse and navigate',
         ResolveContext = '[Traversal] Resolve context',
         Resolve = '[Traversal] Resolve',
         ResolveMany = '[Traversal] Resolve many',
@@ -18,6 +19,11 @@ export namespace TraverserActions {
 
     export class Traverse implements Action {
         readonly type = Types.Traverse;
+        constructor(readonly payload: string) {}
+    }
+
+    export class TraverseAndNavigate implements Action {
+        readonly type = Types.TraverseAndNavigate;
         constructor(readonly payload: string) {}
     }
 
@@ -68,6 +74,7 @@ export namespace TraverserActions {
 
     export type Actions =
         | Traverse
+        | TraverseAndNavigate
         | ResolveContext
         | Resolve
         | ResolveMany
