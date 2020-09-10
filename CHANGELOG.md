@@ -1,3 +1,8 @@
+# 1.4.0 (2020-09-09)
+
+## Improvement
+- Action to trigger traversing navigation [ebrehault]
+
 # 1.3.0 (2020-07-06)
 
 ## New feature

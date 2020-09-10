@@ -44,6 +44,13 @@ export class StateTraverserEffect {
         );
 
     @Effect({dispatch: false})
+    navigateTo = this.actions
+        .pipe(
+            ofType<TraverserActions.TraverseAndNavigate>(TraverserActions.Types.TraverseAndNavigate),
+            tap(action => this.traverser.traverse(action.payload))
+        );
+
+    @Effect({dispatch: false})
     loadTile = this.actions
         .pipe(
             ofType<TraverserActions.LoadTile>(TraverserActions.Types.LoadTile),
