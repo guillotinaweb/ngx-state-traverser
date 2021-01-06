@@ -1,23 +1,33 @@
-/*
-  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
-  It is not intended to be used to perform a compilation.
-
-  To learn more about this file see: https://angular.io/config/solution-tsconfig.
-*/
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./projects/ngx-state-traverser/tsconfig.lib.json"
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "src",
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es2015",
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "lib": [
+            "es2018",
+            "dom"
+        ],
+        "paths": {
+            "angular-traversal": [
+                "develop/angular-traversal/projects/traversal/src/lib"
+            ]
+        }
     },
-    {
-      "path": "./projects/ngx-state-traverser/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/nst-test/tsconfig.json"
-    },
-    {
-      "path": "./projects/nst-test/tsconfig.spec.json"
+    "angularCompilerOptions": {
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true
     }
-  ]
 }
