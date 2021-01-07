@@ -1,13 +1,13 @@
-import { Target } from 'angular-traversal';
+import { SerializableTarget } from './models';
 
 export enum TraverserStateFeatures {
     Traversal = 'traversal',
 }
 
 export interface TraverserState {
-    target: Target;
+    target: SerializableTarget;
     collection: {[path: string]: any};
-    tiles: {[name: string]: Target};
+    tiles: {[name: string]: SerializableTarget};
 }
 
 export const initialState: TraverserState = {

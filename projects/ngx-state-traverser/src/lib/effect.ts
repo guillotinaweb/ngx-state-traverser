@@ -4,6 +4,7 @@ import { TraverserActions } from './actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError, tap } from 'rxjs/operators';
+import { SerializableTarget } from './models';
 
 @Injectable()
 export class StateTraverserEffect {
@@ -13,7 +14,10 @@ export class StateTraverserEffect {
             ofType(TraverserActions.Types.Watch),
             mergeMap(() => this.traverser.target
                 .pipe(
-                    map(target => new TraverserActions.ResolveContext(target)),
+                    map((target: SerializableTarget) => {
+                        const {component, ..._target} = target;
+                        return new TraverserActions.ResolveContext(_target as SerializableTarget);
+                    }),
                     catchError(() => EMPTY)
                 )
             )
@@ -25,7 +29,10 @@ export class StateTraverserEffect {
             ofType(TraverserActions.Types.Watch),
             mergeMap(() => this.traverser.tileUpdates
                 .pipe(
-                    map(({tile, target}) => new TraverserActions.UpdateTile({tile, target})),
+                    map(({tile, target}) => {
+                        const {component, ..._target} = target;
+                        return new TraverserActions.UpdateTile({tile, target: _target as SerializableTarget});
+                    }),
                     catchError(() => EMPTY)
                 )
             )

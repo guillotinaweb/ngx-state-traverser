@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Target } from 'angular-traversal';
+import { SerializableTarget } from './models';
 
 export namespace TraverserActions {
     export enum Types {
@@ -29,7 +29,7 @@ export namespace TraverserActions {
 
     export class ResolveContext implements Action {
         readonly type = Types.ResolveContext;
-        constructor(readonly payload: Target) {}
+        constructor(readonly payload: SerializableTarget) {}
     }
 
     export class Resolve implements Action {
@@ -64,7 +64,7 @@ export namespace TraverserActions {
 
     export class UpdateTile implements Action {
         readonly type = Types.UpdateTile;
-        constructor(readonly payload: {tile: string, target: Target}) {}
+        constructor(readonly payload: {tile: string, target: SerializableTarget}) {}
     }
 
     export class EmptyTile implements Action {

@@ -1,4 +1,10 @@
-# 1.4.0 (2021-01-06)
+# 1.5.1 (2021-01-07)
+
+## Bug fix
+
+- Do not break NgRX immutability rules [ebrehault]
+
+# 1.5.0 (2021-01-06)
 
 ## Improvement
 
