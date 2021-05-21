@@ -1,8 +1,14 @@
+# 1.5.2 (2021-05-21)
+
+## Improvement
+
+-   Upgrade to Angular 12 [ebrehault]
+
 # 1.5.1 (2021-01-07)
 
 ## Bug fix
 
-- Do not break NgRX immutability rules [ebrehault]
+-   Do not break NgRX immutability rules [ebrehault]
 
 # 1.5.0 (2021-01-06)
 
