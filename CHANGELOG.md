@@ -1,3 +1,9 @@
+# 1.5.3 (2021-05-21)
+
+## Bug fix
+
+-   Fix tslib version [ebrehault]
+
 # 1.5.2 (2021-05-21)
 
 ## Improvement
