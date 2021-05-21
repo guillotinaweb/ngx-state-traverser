@@ -1,6 +1,6 @@
 {
     "name": "@guillotinaweb/ngx-state-traverser",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "license": "MIT",
     "author": {
         "name": "Eric Brehault",
@@ -29,12 +29,12 @@
         "url": "https://github.com/guillotinaweb/ngx-state-traverser/issues"
     },
     "peerDependencies": {
-        "@angular/common": "^11.0.5",
-        "@angular/core": "^11.0.5",
+        "@angular/common": "^12.0.1",
+        "@angular/core": "^12.0.1",
         "@ngrx/core": "^1.2.0",
-        "@ngrx/effects": "^10.1.2",
-        "@ngrx/store": "^10.1.2",
-        "angular-traversal": "^1.9.4"
+        "@ngrx/effects": "^12.0.0",
+        "@ngrx/store": "^12.0.0",
+        "angular-traversal": "^1.9.5"
     },
     "private": false,
     "dependencies": {

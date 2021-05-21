@@ -59,7 +59,6 @@
             "main": "projects/nst-test/src/main.ts",
             "polyfills": "projects/nst-test/src/polyfills.ts",
             "tsConfig": "projects/nst-test/tsconfig.json",
-            "aot": true,
             "assets": [
               "projects/nst-test/src/favicon.ico",
               "projects/nst-test/src/assets"
@@ -67,7 +66,13 @@
             "styles": [
               "projects/nst-test/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
