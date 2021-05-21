@@ -1,6 +1,6 @@
 {
     "name": "@guillotinaweb/ngx-state-traverser",
-    "version": "1.5.2",
+    "version": "1.5.3",
     "license": "MIT",
     "author": {
         "name": "Eric Brehault",
@@ -38,6 +38,6 @@
     },
     "private": false,
     "dependencies": {
-        "tslib": "^2.0.0"
+        "tslib": "^2.2.0"
     }
 }
