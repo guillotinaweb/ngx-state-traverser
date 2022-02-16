@@ -1,3 +1,9 @@
+# 1.5.3 (2022-02-16)
+
+## Improvement
+
+-   Upgrade to Angular 13 [jpittman]
+
 # 1.5.3 (2021-05-21)
 
 ## Bug fix
