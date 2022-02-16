@@ -1,5 +1,6 @@
 {
   "name": "ngx-state-traverser",
+  "type": "module",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -46,7 +47,7 @@
     "jest": "27.2.3",
     "jest-preset-angular": "11.0.0",
     "mrs-developer": "^1.5.0",
-    "ng-packagr": "^12.0.0",
+    "ng-packagr": "^13.2.1",
     "ts-node": "9.1.1",
     "tslint": "~6.1.0",
     "typescript": "4.5.5"
